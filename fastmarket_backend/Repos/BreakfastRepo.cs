@@ -3,26 +3,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace fastmarket_backend.Repos
 {
-    public class ProductRepo : IProductRepo
+    public class BreakfastRepo : IBreakfastRepo
     {
         private readonly fastmarketContext _fastmarketContext;
-        public ProductRepo(fastmarketContext fastmarketContext)
+        public BreakfastRepo(fastmarketContext fastmarketContext)
         {
             _fastmarketContext = fastmarketContext;
         }
 
         public string Exception { get; private set; }
 
-        public async Task<List<Product>> GetProducts()
+        public async Task<List<Breakfast>> GetBreakfastProducts()
         {
-            return await _fastmarketContext.Products.ToListAsync();
+            return await _fastmarketContext.Breakfasts.ToListAsync();
         }
 
-        public async void SaveProduct(Product product)
+        public async void SaveBreakfastProduct(Breakfast breakfast)
         {
             try
             {
-                _fastmarketContext.Products.Add(product);
+                _fastmarketContext.Breakfasts.Add(breakfast);
                 await _fastmarketContext.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
@@ -31,10 +31,10 @@ namespace fastmarket_backend.Repos
                 Exception = ex.Message;
             }
         }
-        public async Task<Product> GetProductsDB(int id)
+        public async Task<Breakfast> GetBrakefastDB(int id)
         {
             //get by id 
-            var show = await _fastmarketContext.Products.FindAsync(id);
+            var show = await _fastmarketContext.Breakfasts.FindAsync(id);
             return show;
         }
     }

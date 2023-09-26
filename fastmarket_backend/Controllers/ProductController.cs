@@ -18,14 +18,14 @@ namespace fastmarket_backend.Controllers
         [HttpGet("GetProducts")]
         public async Task<ActionResult<List<Product>>> Get()
         {
-                var respond = await _productRepo.GetProducts();
-                return Ok(respond);
- 
+            var respond = await _productRepo.GetProducts();
+            return Ok(respond);
+
         }
         [HttpPost("MakeNewProduct")]
         public async Task<ActionResult<List<Product>>> Post(Product product)
         {
-     
+
             var userid = await _productRepo.GetProductsDB(product.Id);
             if (userid == null)
             {

@@ -1,5 +1,6 @@
 using fastmarket_backend.DataProvide;
 using fastmarket_backend.Repos;
+using fastmarket_backend.Repos.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<fastmarketContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("db")));
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<ISnakRepo, SnakRepo>();
+builder.Services.AddScoped<IDrinkRepo, DrinkRepo>();
+builder.Services.AddScoped<IDriedfruitRepo, DriedfruitRepo>();
+builder.Services.AddScoped<IDairyRepo, DairyRepo>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<IBreakfastRepo, BreakfastRepo>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",

@@ -17,7 +17,13 @@ namespace fastmarket_backend.DataProvide
         {
         }
 
+        public virtual DbSet<Breakfast> Breakfasts { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Dairy> Dairies { get; set; }
+        public virtual DbSet<Driedfruit> Driedfruits { get; set; }
+        public virtual DbSet<Drink> Drinks { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Snak> Snaks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -30,9 +36,111 @@ namespace fastmarket_backend.DataProvide
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Breakfast>(entity =>
+            {
+                entity.ToTable("breakfast");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.ToTable("categories");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
+            modelBuilder.Entity<Dairy>(entity =>
+            {
+                entity.ToTable("dairy");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
+            modelBuilder.Entity<Driedfruit>(entity =>
+            {
+                entity.ToTable("driedfruit");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
+            modelBuilder.Entity<Drink>(entity =>
+            {
+                entity.ToTable("drinks");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("products");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Image)
+                    .HasMaxLength(100)
+                    .HasColumnName("image");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Price).HasColumnName("price");
+            });
+
+            modelBuilder.Entity<Snak>(entity =>
+            {
+                entity.ToTable("snaks");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 

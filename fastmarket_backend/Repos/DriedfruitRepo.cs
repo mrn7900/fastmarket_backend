@@ -1,28 +1,29 @@
 ﻿using fastmarket_backend.DataProvide;
+using fastmarket_backend.Repos.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace fastmarket_backend.Repos
 {
-    public class ProductRepo : IProductRepo
+    public class DriedfruitRepo: IDriedfruitRepo
     {
         private readonly fastmarketContext _fastmarketContext;
-        public ProductRepo(fastmarketContext fastmarketContext)
+        public DriedfruitRepo(fastmarketContext fastmarketContext)
         {
             _fastmarketContext = fastmarketContext;
         }
 
         public string Exception { get; private set; }
 
-        public async Task<List<Product>> GetProducts()
+        public async Task<List<Driedfruit>> GetDriedfruitProducts()
         {
-            return await _fastmarketContext.Products.ToListAsync();
+            return await _fastmarketContext.Driedfruits.ToListAsync();
         }
 
-        public async void SaveProduct(Product product)
+        public async void SaveDriedfruitProduct(Driedfruit driedfruit)
         {
             try
             {
-                _fastmarketContext.Products.Add(product);
+                _fastmarketContext.Driedfruits.Add(driedfruit);
                 await _fastmarketContext.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
@@ -31,10 +32,10 @@ namespace fastmarket_backend.Repos
                 Exception = ex.Message;
             }
         }
-        public async Task<Product> GetProductsDB(int id)
+        public async Task<Driedfruit> GetDriedfruitDB(int id)
         {
             //get by id 
-            var show = await _fastmarketContext.Products.FindAsync(id);
+            var show = await _fastmarketContext.Driedfruits.FindAsync(id);
             return show;
         }
     }
